@@ -17,19 +17,19 @@
 [color]
 	ui = true
 
-# index
+
+# Index
 #     * Overview
 #     * Help
 #     * Configure
 #     * Github quick setup
-#     * To see repository
-#     * upstream
 #     * Branch 변경
 #     * To get artifactory
-#     * 내가 수정한 파일 보기
-#     * move
+#     * Status
+#     * Move
 #     * git commit --amend
-#     * last commit changes
+#     * git reset vs git revert
+#     * View contents of file
 #     * log
 #     * log - tag
 #     * diff
@@ -127,27 +127,55 @@
 #     git commit -m "first commit"
 # 
 #     # 3
-#     git remote add origin git@github.com:JinnampoJisanri90/Git.git
+#     git remote add origin<REMOTE_REPO_OR_NAME> git@github.com:JinnampoJisanri90/Git.git
+# 
+#         | To see repository
+#         |     $ git remote -v
+#         |           origin    https://github.com/alpha/bravo (fetch)
+#         |           origin    https://github.com/alpha/bravo (push)
+# 
+#     git remove -v
+# 
 #     git branch -M main
 #     git push -u origin main
 # 
-# To see repository
-#     $ git remote -v
-#           origin    https://github.com/alpha/bravo (fetch)
-#           origin    https://github.com/alpha/bravo (push)
-# 
-# upstream
-#     $ git push
-#         fatal: The current branch develop has no upstream branch.
-#         To push the current branch and set the remote as upstream, use
-#             git push --set-upstream origin develop
-# 
-#     $ git remote show origin
-# 
+#         | To set upstream
+#         |     Example message
+#         |         $ git push
+#         |             fatal: The current branch develop has no upstream branch.
+#         |             To push the current branch and set the remote as upstream, use
+#         |                 git push --set-upstream origin develop
+#         |                                                                            
+#         |         $ git remote show origin
+#         |                                                                            
+#         |     Create branch locally
+#         |                                                                            
+#         |         # Create a new branch and check it out
+#         |         git checkout -b <branch-name>
+#         |                                                                            
+#         |     The remote branch is automatically created
+#         |     when you push it to the remote server.
+#         |                                                                            
+#         |         git push <remote-name> <branch-name> 
+#         |         <remote-name> is typically origin
+#         |                                                                            
+#         |     Formally, the format is
+#         |                                                                            
+#         |         git push <remote-name> <local-branch-name>:<remote-branch-name>
+#         |                                                                            
+#         |     when you omit one, it assumes both branch names are the same. 
+#         |     As a word of caution, only :<remote-branch-name> (with the colon),
+#         |     the remote branch will be deleted!
+#         |     you might instead want to use
+#         |                                                                            
+#         |         git push --set-upstream <remote-name> <local-branch-name> 
+#         |                                                                            
+#         |     the --set-upstream option sets up an upstream branch
+#         
 # Branch 변경
 #     $ git branch
-#     $ git branch -a(원격과 로컬 모두 보여줌)
-#     $ git branch -r(원격만 보여줌)
+#     $ git branch -a # 원격과 로컬 모두 보여줌
+#     $ git branch -r # list remote branches
 # 
 #     $ git checkout localBranch
 # 
@@ -159,12 +187,12 @@
 #     $ git fetch # 현재 위치(branch)로 가져오되 머지는 안함  
 #     $ git merge # 현재 위치(branch)에서 다른곳에서 수정된 것과 병합하기  
 # 
-# 내가 수정한 파일 보기
+# Status
 #     $ git status -s
 #     $ git status -v
 #     $ git status
 # 
-# move
+# Move
 #     git mv dockerfile Dockerfile
 # 
 # git commit --amend
@@ -182,12 +210,57 @@
 #     If you force push,
 #     people who have already cloned your repository will have to manually fix their local history.
 # 
-# last commit changes
-#     git show 4cbb4:Dockerfile
-#     git show object
-#     git show $REV:$FILE
-#     git show somebranch:from/the/root/myfile.txt
-#     git show HEAD^^^:test/test.py
+# git reset vs git revert
+#     https://www.pixelstech.net/article/1549115148-git-reset-vs-git-revert
+# 
+#     Cancel a commit not pushed
+#         git reset --soft HEAD~
+# 
+#     Delete last commit after pushs
+#         git reset --hard HEAD~1
+# 
+#         git push -f <remote> <branch>
+#         git push -f origin master
+# 
+# View contents of file
+#     git show b1b22df407417:Makefile
+# 
+#     # current version in master branch
+#     git show master:Makefile
+# 
+#     # previous version on the exper branch
+#     git show exper^:Makefile
+# 
+#     | A detached HEAD
+#     |     https://careerkarma.com/blog/git-head-detached-at/
+#     | 
+#     |     A detached HEAD occurs when you are viewing a single commit in the history of a Git repository.
+#     |     You’ll see a message whenever you enter into
+#     |     Detached HEAD state informing you that you are no longer on a branch.
+#     | 
+#     |     Discard Changes in a Detached HEAD
+#     | 
+#     |         You do not need to save the changes you make to a detached HEAD.
+#     | 
+#     |         Once you are done viewing a previous commit, 
+#     |         you can go back to the HEAD of your repository.
+#     |         First, we need to discard the changes we made
+#     | 
+#     |             git reset --hard
+#     | 
+#     |         Next, we can check out the HEAD of our master branch
+#     | 
+#     |             git checkout master
+#     | 
+#     |         This will change your current HEAD to the tip of the master branch. 
+#     |         None of the changes you made in the detached HEAD state will be reflected on your repository.
+#     | 
+#     |     Save Changes to a Detached HEAD
+#     | 
+#     |         To save a change from a detached HEAD,
+#     |         you need to create a new Git branch:
+#     | 
+#     |             git branch dev
 # 
 # log
 #     git log --all -- '**/my_file.png' | less
@@ -228,4 +301,3 @@
 #     from remote
 #         git push --delete origin v0.0.1.2
 # 
-
