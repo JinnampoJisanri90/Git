@@ -1,0 +1,231 @@
+[user]
+	email = -@users.noreply.github.com
+	name = -
+[core]
+	autocrlf = false
+	editor = vim
+	pager = less -iXFR
+[i18n]
+	logOutputEncoding = utf-8
+	commitEncoding = utf-8
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[color]
+	ui = true
+
+# index
+#     * Overview
+#     * Help
+#     * Configure
+#     * Github quick setup
+#     * To see repository
+#     * upstream
+#     * Branch 변경
+#     * To get artifactory
+#     * 내가 수정한 파일 보기
+#     * move
+#     * git commit --amend
+#     * last commit changes
+#     * log
+#     * log - tag
+#     * diff
+#     * tag
+#     * tag - remove
+# 
+# Overview
+#     Workflow
+# 
+#         working directory       staging area        git directory(repository)
+#               |                      |                          |
+#               |  stage files(수정)   |                          |
+#               |--------------------->|                          |
+#               |                      |  commit & push           |
+#               |                      |------------------------->|
+# 
+#     Getting and Creating Projects
+# 
+#         - init(Initializes a new Git repository.)
+#         - clone
+# 
+#     Basic Snapshotting
+# 
+#         - add
+#         - status
+#         - diff
+#         - commit
+#         - reset
+#         - rm, mv
+#         - stash
+# 
+#     Branching and Merging
+# 
+#         - branch
+#         - checkout
+#         - merge
+#         - log
+#         - tag
+# 
+#     Sharing
+# 
+#         - fetch
+#         - pull(If you want the most up-to-date version of your repository to work with.)
+#         - push(If you want your commits to be visible online on GitHub as well.)
+#         - remote
+# 
+#     Inspection and Comparison
+# 
+#         - log
+#         - diff
+# 
+# Help
+#     git help branch
+# 
+# Configure
+#     * LF4Linux, LFCR4Windows
+# 
+#     export LC_ALL=C.UTF-8     # for git log
+#     export LESSCHARSET=UTF-8  # for git log
+# 
+#     git config --global user.name  "아무개"  
+#     git config --global user.email "your_email@lgcns.com"  
+# 
+#     git config --global core.autocrlf true
+#         autocrlf=true   x -> LF -> CRLF
+#         autocrlf=input  x -> LF -> LF
+#         autocrlf=false  x -> x  -> x
+#     git config --global i18n.logOutputEncoding utf-8
+#     git config --global i18n.commitEncoding utf-8
+# 
+#     git config --global core.editor "vim"
+#     git config --global diff.tool vimdiff
+#     git config --global merge.tool vimdiff
+#     git config --global --add difftool.prompt false
+# 
+#     git config --global color.ui true
+#     git config --global --replace-all core.pager "less -iXFR"
+# 
+#     git config --global --list # for ~/.gitconfig
+#     git config --system --list # for /etc/gitconfig
+# 
+#     git config --global --edit
+# 
+# Github quick setup
+#     TODO
+#         * README
+#         * LICENSE
+#         * .gitignore
+# 
+#     # 1
+#     git init
+# 
+#     # 2
+#     git add README.md
+#     git commit -m "first commit"
+# 
+#     # 3
+#     git remote add origin git@github.com:JinnampoJisanri90/Git.git
+#     git branch -M main
+#     git push -u origin main
+# 
+# To see repository
+#     $ git remote -v
+#           origin    https://github.com/alpha/bravo (fetch)
+#           origin    https://github.com/alpha/bravo (push)
+# 
+# upstream
+#     $ git push
+#         fatal: The current branch develop has no upstream branch.
+#         To push the current branch and set the remote as upstream, use
+#             git push --set-upstream origin develop
+# 
+#     $ git remote show origin
+# 
+# Branch 변경
+#     $ git branch
+#     $ git branch -a(원격과 로컬 모두 보여줌)
+#     $ git branch -r(원격만 보여줌)
+# 
+#     $ git checkout localBranch
+# 
+# To get artifactory
+#     $ git pull
+#     $ git pull remotename branchname
+#     $ git diff HEAD origin/master  # 첫 pull 이후 origin/master와 diff필요  
+# 
+#     $ git fetch # 현재 위치(branch)로 가져오되 머지는 안함  
+#     $ git merge # 현재 위치(branch)에서 다른곳에서 수정된 것과 병합하기  
+# 
+# 내가 수정한 파일 보기
+#     $ git status -s
+#     $ git status -v
+#     $ git status
+# 
+# move
+#     git mv dockerfile Dockerfile
+# 
+# git commit --amend
+#     Changing a commit message
+# 
+#     Commit has not been pushed online
+# 
+#     If the commit only exists in your local repository
+#     and has not been pushed to GitHub, 
+#     you can amend the commit message
+# 
+#     If you have already pushed the commit to GitHub,
+#     you will have to force push a commit with an amended message.
+#     We strongly discourage force pushing,
+#     If you force push,
+#     people who have already cloned your repository will have to manually fix their local history.
+# 
+# last commit changes
+#     git show 4cbb4:Dockerfile
+#     git show object
+#     git show $REV:$FILE
+#     git show somebranch:from/the/root/myfile.txt
+#     git show HEAD^^^:test/test.py
+# 
+# log
+#     git log --all -- '**/my_file.png' | less
+#     git log --all | less
+# 
+#     git log -5
+#     git log --pretty=oneline
+# 
+#     git log --name-only
+#     git log --name-status
+#     git log --stat
+# 
+#     git log --author='author' | less
+#     git log --after="2013-11-12 00:00" --before="2013-11-12 23:59"
+# 
+#     gitk
+#     gitk [filename]
+# 
+# log - tag
+#     git tag -l
+#     git tag -l -n9
+#     git tag -l -n9 v3.*
+#     git ls-remote --tags origin
+# 
+# diff
+#     git fetch && git diff --name-only ..origin
+#     git difftool -- Dockerfile HEAD
+# 
+# tag
+#     git tag -a v0.0.0.1 -m "Dockerfile 수정"
+#     git tag v0.0.1.4
+#     git push origin --tags
+# 
+# tag - remove
+#     from local
+#         git tag -d v0.0.1.4
+# 
+#     from remote
+#         git push --delete origin v0.0.1.2
+# 
+
