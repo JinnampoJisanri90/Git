@@ -1,6 +1,6 @@
 [user]
-	email = -@users.noreply.github.com
-	name = -
+	email = 0000000+ID@users.noreply.github.com
+	name = ID
 [core]
 	autocrlf = false
 	editor = vim
@@ -16,6 +16,9 @@
 	prompt = false
 [color]
 	ui = true
+[alias]
+    hist = log --graph --oneline --decorate
+    st = status
 
 
 # Index
@@ -89,6 +92,9 @@
 # 
 #     export LC_ALL=C.UTF-8     # for git log
 #     export LESSCHARSET=UTF-8  # for git log
+#
+#     sudo apt-get install git-core bash-completion
+#     source /usr/share/bash-completion/completions/git
 # 
 #     git config --global user.name  "아무개"  
 #     git config --global user.email "your_email@lgcns.com"  
